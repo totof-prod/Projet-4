@@ -1,4 +1,5 @@
-
+<div class="container">
+    <div class="row">
     <div class="cols-sm-8">
         <?php foreach ( Blog\table\Article::getLast() as $post): ?>
 
@@ -9,14 +10,16 @@
 
         <?php   endforeach; ?>
     </div>
-    <div class="row"><div class="cols-sm-4">
+
+        <div class="cols-sm-4">
             <ul>
-                <?php foreach( Blog\table\Category::all1() as $category): ?>
+                <?php foreach( Blog\table\Categorie::all1() as $category): ?>
 
                     <li><a href=""><?= $category->name; ?></a></li>
 
                 <?php endforeach; ?>
             </ul>
         </div>
-
+    </div>
 </div>
+

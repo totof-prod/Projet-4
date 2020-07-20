@@ -14,7 +14,7 @@ class Article extends Table {
                 FROM posts 
                 LEFT JOIN categories 
                     ON category_id = categories.id"
-                , __CLASS__);
+                , get_called_class());
     }
     public function getUrl(){
     return 'index.php?p=article&id=' . $this->id;
