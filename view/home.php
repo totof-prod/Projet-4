@@ -1,6 +1,7 @@
-<div class="container">
+
     <div class="row">
     <div class="cols-sm-8">
+
         <?php foreach ( Blog\table\Article::getLast() as $post): ?>
 
             <h2><a href="<?= $post->Url; ?>"><?= $post->title; ?></a></h2>
@@ -15,11 +16,11 @@
             <ul>
                 <?php foreach( Blog\table\Categorie::all1() as $category): ?>
 
-                    <li><a href=""><?= $category->name; ?></a></li>
+                    <li><a href="<?= $category->url; ?>"><?= $category->name; ?></a></li>
 
                 <?php endforeach; ?>
             </ul>
         </div>
     </div>
-</div>
+
 

@@ -1,22 +1,33 @@
 <?php
 
 namespace Blog;
+
 class App{
 
-    const DB_NAME = 'blog';
-    const DB_USER = 'root';
-    const DB_PASS = 'root';
-    const DB_HOST = 'localhost:8889';
+    private static $_instance;
+    public $title = 'Mon super Blog';
+    private $db_instance;
 
-
-    private static $database;
-
-    public static function getDatabase(){
-        if (self::$database === null){
-            self::$database = new Database(self::DB_NAME, self::DB_USER, self::DB_PASS, self::DB_HOST);
+    public static function getInstance(){
+        if(is_null(self::$_instance)){
+            self::$_instance = new App();
         }
+        return self::$_instance;
+    }
 
-      return self::$database;
+    public function getTable($name){
+
+        $class_name = "\\Blog\\table\\".ucfirst($name)."Table";
+
+        return new $class_name($this->getDb());
+    }
+
+    public function getDb(){
+        $config =  config::getInstance();
+        if(is_null($this->db_instance)){
+            $this->db_instance = new Database($config->get('db_name'), $config->get('db_user'), $config->get('db_pass'), $config->get('db_host'));
+        }
+        return $this->db_instance;
     }
 
 }

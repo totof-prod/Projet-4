@@ -4,19 +4,9 @@ require '../model/Autoloader.php';
 
 Blog\Autoloader::register();
 
-if(isset($_GET['p'])){
-    $p = $_GET['p'];
-}else{
-    $p = 'home';
-}
 
+$app = Blog\App::getInstance();
 
-ob_start();
+$post = $app->getTable('post');
 
-if($p === 'home'){
-    require '../view/home.php';
-}elseif ($p === 'article'){
-    require '../view/single.php';
-}
-$content = ob_get_clean();
-require '../view/fontend/template.php';
+var_dump($post->all());

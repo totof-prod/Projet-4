@@ -1,8 +1,17 @@
 <?php
 
-$post = Blog\App::getDatabase()->prepare('SELECT  * FROM posts WHERE id= ?', [$_GET['id']], 'Blog\table\Article', true);
+use Blog\App;
+use Blog\table\Article;
+use Blog\table\Categorie;
+
+$post = Article::find($_GET['id']);
+
+if($post === false){
+    App::notFound();
+}
+App::setTitle($post->title);
 ?>
 
 <h1><?= $post-> title; ?></h1>
-
-<p><?= $post->content; ?></p>
+<p><em><?= $post->categorie?></em></p>
+<p><?= $post-> content; ?></p>

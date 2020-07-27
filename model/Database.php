@@ -27,20 +27,26 @@ namespace Blog;
                 return $pdo;
         }
 
-        public function query($statement, $class_name)
+        public function query($statement, $class_name = null, $one = false)
         {
-
             $req = $this->getPDO()->query($statement);
-            return $req->fetchAll(PDO::FETCH_CLASS, $class_name);
+            if($class_name === null){
+                $req->setFetchMode(PDO::FETCH_OBJ);
+            }else{
+                $req->setFetchMode(PDO::FETCH_CLASS, $class_name);
+            }
+            if($one){
+                $data = $req->fetch();
+            }else{
+                $data = $req->fetchAll();
+            }
+            return $data;
         }
-
 
         public function prepare($statement, $values, $class_name, $one = false){
             $req = $this->getPDO()->prepare($statement );
             $req->execute($values);
             $req->setFetchMode(PDO::FETCH_CLASS, $class_name);
-
-
             if($one){
                 $data = $req->fetch();
             }else{
