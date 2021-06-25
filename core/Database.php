@@ -1,5 +1,5 @@
 <?php
-namespace Blog;
+namespace core;
     use \PDO;
 
     class Database
@@ -11,7 +11,7 @@ namespace Blog;
         private $db_host;
         protected $pdo;
 
-        public function __construct($db_name, $db_user = 'root', $db_pass = 'root', $db_host = 'localhost:8889')
+        public function __construct($db_name, $db_user = 'Totof', $db_pass = 'JagLand10', $db_host = '127.0.0.1:3306')
         {
             $this->db_host = $db_host;
             $this->db_name = $db_name;
@@ -21,7 +21,7 @@ namespace Blog;
 
         private function getPDO()
         {
-                $pdo = new PDO('mysql:dbname=blog;host=localhost:8889', 'root', 'root');
+                $pdo = new PDO('mysql:dbname=blog_auteur;host=127.0.0.1:3306', 'Totof', 'JagLand10');
                 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 $this->pdo = $pdo;
                 return $pdo;
@@ -43,10 +43,16 @@ namespace Blog;
             return $data;
         }
 
-        public function prepare($statement, $values, $class_name, $one = false){
+        public function prepare($statement, $values, $class_name = null, $one = false){
             $req = $this->getPDO()->prepare($statement );
             $req->execute($values);
-            $req->setFetchMode(PDO::FETCH_CLASS, $class_name);
+            
+            if($class_name === null){
+            
+                $req->setFetchMode(PDO::FETCH_OBJ);
+            }else{
+                $req->setFetchMode(PDO::FETCH_CLASS, $class_name);
+            }
             if($one){
                 $data = $req->fetch();
             }else{

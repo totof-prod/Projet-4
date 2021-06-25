@@ -1,5 +1,5 @@
 <?php
-namespace Blog;
+namespace core;
 /**
  * Class Autoloader
  * @package Tutoriel

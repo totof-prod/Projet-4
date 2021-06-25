@@ -2,8 +2,8 @@
 
 return array(
 
-    "db_user" => "root",
-    "db_pass" => "root",
-    "db_name" => "blog",
-    "db_host" => "localhost:8889"
+    "db_user" => "Totof",
+    "db_pass" => "JagLand10",
+    "db_name" => "blog_auteur",
+    "db_host" => "127.0.0.1:3306"
 );

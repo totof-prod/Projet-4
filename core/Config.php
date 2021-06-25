@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Blog;
+namespace core;
 
 
 class Config
@@ -10,16 +10,16 @@ class Config
     private static $_instance;
 
 
-    public static function getInstance(){
+    public static function getInstance($file){
         if(is_null(self::$_instance)){
-            self::$_instance = new Config();
+            self::$_instance = new Config($file);
         }
         return self::$_instance;
     }
 
-    public function __construct()
+    public function __construct($file)
     {
-        $this->settings = require dirname(__DIR__) . '/config/config.php';
+        $this->settings = require($file);
 
     }
 

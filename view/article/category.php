@@ -1,25 +1,21 @@
 <?php
+$app = App::getInstance();
 
-use Blog\App;
-use Blog\table\Article;
-use Blog\table\Categorie;
-
-$categorie = Categorie::find($_GET['id']);
+$categorie = $app->getTable('Category')->find($_GET['id']);
     if($categorie === false){
-        App::notFound();
+        $app->notFound();
     }
-$article =  Article::lastByCategorie($_GET['id']);
-$categories = Categorie::all1();
+$article =  $app->getTable('Post')->lastByCategory($_GET['id']);
+
+$categories = $app->getTable('Category')->all();
 ?>
 
     <h1><?= $categorie->name;?></h1>
     <div class="row">
         <div class="cols-sm-8">
             <?php foreach ( $article as $articles): ?>
-
-                <h2><a href="<?= $articles->Url; ?>"><?= $articles->title; ?></a></h2>
+            <h2><a href="<?= $articles->Url; ?>"><?= $articles->title; ?></a></h2>
                 <h5><?= $articles->categorie;?></h5>
-
                 <?= $articles->Extrait; ?>
 
             <?php   endforeach; ?>
@@ -27,7 +23,7 @@ $categories = Categorie::all1();
 
         <div class="cols-sm-4">
             <ul>
-                <?php foreach( Blog\table\Categorie::all1() as $category): ?>
+                <?php foreach( $categories as $category): ?>
 
                     <li><a href="<?= $category->url; ?>"><?= $category->name; ?></a></li>
 
