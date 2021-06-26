@@ -2,7 +2,6 @@
 namespace core;
 /**
  * Class Autoloader
- * @package Tutoriel
  */
 class Autoloader{
 

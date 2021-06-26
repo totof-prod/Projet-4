@@ -2,7 +2,6 @@
 namespace Blog;
 /**
  * Class Autoloader
- * @package Tutoriel
  */
 class Autoloader{
 

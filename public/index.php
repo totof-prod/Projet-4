@@ -2,7 +2,7 @@
 
 
 define('ROOT', dirname(__DIR__));
-require ROOT . '/model/App.php';
+require ROOT . '/app/App.php';
 App::load();
 
 
@@ -15,18 +15,22 @@ if(isset($_GET['p'])){
 
 ob_start();
 if( $page === 'home'){
-    require ROOT . '/view/article/home.php';
+    $controller = new \Blog\Controller\PostsController();
+    $controller->index();
 
 }elseif ($page === 'posts.category'){
-    require ROOT . '/view/article/category.php';
+    $controller = new \Blog\Controller\PostsController();
+    $controller->category();
 
 }elseif($page === 'posts.single'){
-    require ROOT . '/view/article/single.php';
+    $controller = new \Blog\Controller\PostsController();
+    $controller->single();
 }
 elseif($page === 'login'){
-    require ROOT . '/view/users/login.php';
+    $controller = new \Blog\Controller\UsersController();
+    $controller->login();
 }
-
-$content = ob_get_clean();
-
-require ROOT . '/view/fontend/template.php';
+elseif($page === 'admin.index'){
+    $controller = new \Blog\Controller\admin\PostsController();
+    $controller->index();
+}

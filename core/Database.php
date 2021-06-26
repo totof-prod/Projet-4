@@ -58,7 +58,7 @@ namespace core;
             if(
                 strpos($statement, 'UPDATE') === 0 ||
                 strpos($statement, 'INSERT') === 0 ||
-                strpos($statement, 'DElETE') === 0
+                strpos($statement, 'DELETE') === 0
             ){
                 return $res;
             }
@@ -78,5 +78,8 @@ namespace core;
             return $data;
 
 
+        }
+        public function lastInsertId(){
+            return $this->getPDO()->lastInsertId();
         }
     }

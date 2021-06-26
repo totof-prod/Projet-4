@@ -5,7 +5,8 @@ if (!empty($_POST)){
 
     $result = $postTable->update($_GET['id'],[
         'title' => $_POST['title'],
-        'content' => $_POST['content']
+        'content' => $_POST['content'],
+            'category_id'=> $_POST['category_id']
         ]
     );
     if($result){
@@ -19,7 +20,7 @@ if (!empty($_POST)){
 }
 
 $post= $postTable->find($_GET['id']);
-$categorie= App::getInstance()->getTable('category')->all();
+$categories= App::getInstance()->getTable('category')->extract('id', 'name');
 $form = new core\html\BootstrapForm($post);
 
 ?>
@@ -28,6 +29,7 @@ $form = new core\html\BootstrapForm($post);
 
     <?= $form->input('title','Titre de l\'article'); ?>
     <?= $form->input('content', 'Contenu', ['type' =>'textarea'] ); ?>
+    <?= $form->select('category_id', 'Categorie', $categories ); ?>
 
     <button class="btn btn-primary">Sauvegarder</button>
 

@@ -33,9 +33,10 @@
             <li class="nav-item active">
                 <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="index.php?p=login">Se connecter<span class="sr-only">(current)</span></a>
-            </li>
+
+                <li class="nav-item active">
+                    <a class="nav-link" href="admin.php">admin<span class="sr-only">(current)</span></a>
+                </li>
         </ul>
     </div>
 </nav>
