@@ -15,7 +15,7 @@ class UsersController extends AppController {
 
             $auth = new \core\auth\DbAuth(App::getInstance()->getDb());
             if($auth->login($_POST["username"], $_POST["password"])){
-                header('Location: index.php?p=admin.index');
+                header('Location: index.php?p=admin.posts.index');
             }else{
                 $error = true;
             }

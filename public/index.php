@@ -10,27 +10,19 @@ App::load();
 if(isset($_GET['p'])){
     $page = $_GET['p'];
 }else{
-    $page = 'home';
+    $page = 'posts.index';
 }
 
-ob_start();
-if( $page === 'home'){
-    $controller = new \Blog\Controller\PostsController();
-    $controller->index();
+$page = explode('.', $page);
+if($page[0] == 'admin'){
+    $controller = $controller = '\Blog\Controller\admin\\'. ucfirst($page[1]) . 'Controller';
+    $action = $page[2];
+}else{
+    $controller = '\Blog\Controller\\'. ucfirst($page[0]) . 'Controller';
+    $action = $page[1];
+}
 
-}elseif ($page === 'posts.category'){
-    $controller = new \Blog\Controller\PostsController();
-    $controller->category();
+$controller = new $controller();
+$controller->$action();
 
-}elseif($page === 'posts.single'){
-    $controller = new \Blog\Controller\PostsController();
-    $controller->single();
-}
-elseif($page === 'login'){
-    $controller = new \Blog\Controller\UsersController();
-    $controller->login();
-}
-elseif($page === 'admin.index'){
-    $controller = new \Blog\Controller\admin\PostsController();
-    $controller->index();
-}
+
