@@ -13,7 +13,7 @@ public function getUrl(){
 }
 public function getExtrait(){
 
-    $html = '<p>'. substr($this->content,0, 100 ). '...</p>';
+    $html =  substr($this->content,0, 100 ). '...';
     $html .= '<p><a href="' . $this->getUrl() . '">Voir la suite</a></p>';
     return $html;
 }

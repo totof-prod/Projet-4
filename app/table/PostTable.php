@@ -31,6 +31,7 @@ class PostTable extends Table
             LEFT JOIN Category ON category_id = category.id
             WHERE Post.id = ?
             ", [$id], true);
+
     }
 
     public function lastByCategory($id){

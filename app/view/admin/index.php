@@ -16,7 +16,8 @@
     </tr>
     </thead>
     <tbody>
-    <?php foreach ($posts as $post): ?>
+    <?php
+    foreach ($posts as $post): ?>
         <tr>
 
             <td><?= $post->id;?> </td>
@@ -26,6 +27,7 @@
                 <form action="?p=admin.posts.delete" method="post" style="display: inline;">
                     <input type="hidden" name="id" value="<?= $post->id?>">
                     <button type="submit" class="btn btn-danger">Supprimer</button>
+                    <a class="btn btn-primary" href="?p=admin.comment.edit&id=<?= $post->id; ?>">Moderation des commentaires</a>
                 </form>
             </td>
         </tr>

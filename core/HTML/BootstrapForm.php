@@ -21,7 +21,8 @@ class  BootstrapForm extends Form{
         $label = '<label>' . $label . '</label>';
         if($type === 'textarea'){
             $input = '<textarea name="' . $name . '" class="form-control">' . $this->getValue($name) . '</textarea>';
-        } else{
+        }
+        else{
             $input = '<input type="' . $type . '" name="' . $name . '" value="' . $this->getValue($name) . '" class="form-control">';
         }
         return $this->surround($label . $input);
