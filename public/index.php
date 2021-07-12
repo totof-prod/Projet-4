@@ -14,6 +14,7 @@ if(isset($_GET['p'])){
 }
 
 $page = explode('.', $page);
+
 if($page[0] == 'admin'){
     $controller = $controller = '\Blog\Controller\admin\\'. ucfirst($page[1]) . 'Controller';
     $action = $page[2];

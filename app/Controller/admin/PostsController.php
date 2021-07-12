@@ -1,7 +1,6 @@
 <?php
 
 namespace Blog\Controller\admin;
-use \App;
 use core\html\BootstrapForm;
 
 class PostsController extends AppController
@@ -29,6 +28,7 @@ class PostsController extends AppController
                 ]
             );
             if ($result) {
+                $this->setFlash('La page à bien été ajoutée', 'success');
                 return $this->index();
             }
         }
@@ -48,6 +48,7 @@ class PostsController extends AppController
                 ]
             );
             if($result){
+                $this->setFlash('La page à bien été modifiée', 'success');
                 return $this->index();
             }
         }
@@ -59,10 +60,9 @@ class PostsController extends AppController
     public function  delete(){
 
         if (!empty($_POST)){
-
             $result = $this->post->delete($_POST['id']);
+            $this->setFlash('La page à bien été supprimée', 'success');
             return $this->index();
-
         }
     }
 

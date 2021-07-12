@@ -15,8 +15,8 @@ class CategoryController extends AppController
     public function index(){
         $posts = $this->post->all();
         $categories= $this->category->all();
-
-        $this->render('admin.index', compact('posts', 'categories'));
+        $flash = $this->flash();
+        $this->render('admin.index', compact('posts', 'categories', 'flash'));
     }
     public function add(){
 
@@ -27,6 +27,7 @@ class CategoryController extends AppController
                 ]
             );
             if ($result) {
+                $this->setFlash('La categorie à bien été ajoutée', 'success');
                 return $this->index();
             }
         }
@@ -44,6 +45,7 @@ if (!empty($_POST)) {
         ]
     );
     if ($result) {
+        $this->setFlash('La categorie à bien été Modifiée', 'success');
         return $this->index();
     }
 }
@@ -58,6 +60,7 @@ if (!empty($_POST)) {
         if (!empty($_POST)){
 
             $result = $this->category->delete($_POST['id']);
+            $this->setFlash('La categorie à bien été supprimée', 'success');
             return $this->index();
 
         }

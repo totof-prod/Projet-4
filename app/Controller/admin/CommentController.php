@@ -18,22 +18,20 @@ class CommentController extends AppController
     public function index(){
         $posts = $this->post->all();
         $categories= $this->category->all();
-
         $this->render('admin.index', compact('posts', 'categories'));
     }
     public function edit(){
 
-
         $comments = $this->comments->findSignal($_GET['id']);
         $this->render('admin.comment.edit', compact('comments'));
-
 
     }
     public function  delete(){
         if (!empty($_POST)){
             $result = $this->comments->delete($_POST['id']);
             if ($result){
-                    return $this->index();
+                $this->setFlash('Le commentaire à bien été supprimé', 'success');
+                $this->index();
                 }
         }
 
@@ -44,6 +42,7 @@ class CommentController extends AppController
             $result = $this->comments->update($_POST['id'], ['Signalement' => $_POST['Signalement']]);
 
             if ($result) {
+                $this->setFlash('Le commentaire à bien été conservé', 'success');
                 return $this->index();
             }
         }

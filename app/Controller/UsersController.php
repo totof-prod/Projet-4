@@ -3,8 +3,6 @@
 
 namespace Blog\Controller;
 
-
-
 use App;
 
 class UsersController extends AppController {

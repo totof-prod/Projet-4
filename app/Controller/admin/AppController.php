@@ -5,6 +5,7 @@ use \App;
 use \core\auth\DbAuth;
 
 class AppController extends \Blog\Controller\AppController {
+
     public function __construct()
     {
         parent::__construct();
@@ -12,7 +13,6 @@ class AppController extends \Blog\Controller\AppController {
         $auth = new DbAuth($app->getDb());
 
         if (!$auth->logged()){
-
             $this->forbidden();
         }
     }
