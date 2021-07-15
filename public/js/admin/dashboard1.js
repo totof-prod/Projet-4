@@ -12,10 +12,10 @@ $(function () {
 
     //ct-visits
     new Chartist.Line('#ct-visits', {
-        labels: ['2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015'],
+        labels: ['2208', '2009', '2010', '2011', '2012', '2013', '2014', '2015'],
         series: [
-            [5, 2, 7, 4, 5, 3, 5, 4]
-            , [2, 5, 2, 6, 2, 5, 2, 4]
+            [7, 2, 10, 4, 5, 3, 5, 4]
+            , [2, 5, 2, 6, 2, 5, 7, 4]
         ]
     }, {
         top: 0,
@@ -25,7 +25,7 @@ $(function () {
         plugins: [
             Chartist.plugins.tooltip()
         ],
-        axisY: {
+        axisX: {
             labelInterpolationFnc: function (value) {
                 return (value / 1) + 'k';
             }

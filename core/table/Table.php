@@ -18,6 +18,9 @@ public function __construct(Database $db)
     }
 
 }
+public function count(){
+    return $this->query(' SELECT COUNT(*) AS result FROM ' . $this->table);
+}
 public function all(){
 
      return $this->query('SELECT * FROM ' . $this->table );

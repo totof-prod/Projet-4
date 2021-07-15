@@ -2,6 +2,8 @@
 
 namespace Blog\Controller\admin;
 use core\html\BootstrapForm;
+use core\tools;
+
 
 class PostsController extends AppController
 {
@@ -10,12 +12,14 @@ class PostsController extends AppController
         parent::__construct();
         $this->loadModel('post');
         $this->loadModel('category');
+        $this->loadModel('comments');
     }
     public function index(){
         $posts = $this->post->all();
-        $categories= $this->category->all();
-
-        $this->render('admin.index', compact('posts', 'categories'));
+        $categories = $this->category->all();
+        $comments = $this->comments->count();
+        $visitor = new tools\visitorCounter();
+        $this->render('admin.index', compact('posts', 'categories', 'visitor', 'comments'));
     }
     public function add(){
 

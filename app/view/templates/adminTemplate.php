@@ -41,6 +41,22 @@
                         <img src="assets/img/5.jpg" alt="user-img" width="36"
                              class="img-circle"><span class="text-white font-medium">Jean</span></a>
                 </li>
+                    <?php
+                    if(isset($_SESSION['auth'])){
+                    ?>
+                <li class="nav-item active">
+                    <a class="nav-link px-lg-3 py-3 py-lg-4" href="index.php?p=admin.posts.index">admin</a>
+                </li>
+                <?php
+                }else{
+                    ?>
+                    <li class="nav-item active">
+                        <a class="nav-link px-lg-3 py-3 py-lg-4" href="index.php?p=users.login">Se connecter</a>
+                    </li>
+
+                    <?php
+                }
+                ?>
             </ul>
         </div>
     </nav>
@@ -57,6 +73,13 @@
                        aria-expanded="false">
                         <i class="far fa-clock" aria-hidden="true"></i>
                         <span class="hide-menu">Accueil Admin</span>
+                    </a>
+                </li>
+                <li class="sidebar-item pt-2">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php"
+                       aria-expanded="false">
+                        <i class="far fa-clock" aria-hidden="true"></i>
+                        <span class="hide-menu">Accueil site</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
@@ -88,22 +111,6 @@
     <!-- End Sidebar scroll-->
 </aside>
 <div class="page-wrapper">
-    <?php
-    if(isset($_SESSION['auth'])){
-        ?>
-        <li class="nav-item active">
-            <a class="nav-link px-lg-3 py-3 py-lg-4" href="index.php?p=admin.posts.index">admin</a>
-        </li>
-        <?php
-    }else{
-        ?>
-        <li class="nav-item active">
-            <a class="nav-link px-lg-3 py-3 py-lg-4" href="index.php?p=users.login">Se connecter</a>
-        </li>
-
-        <?php
-    }
-    ?>
     <?= $content ; ?>
 <footer class="footer text-center"> 2021 © Ample Admin brought to you by <a
             href="https://www.wrappixel.com/">wrappixel.com</a>

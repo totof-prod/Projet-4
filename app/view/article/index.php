@@ -38,8 +38,7 @@
                     le <?= $post->creation_date?>
                 </p>
             </div>
-            <?php if($data != NULL){
-            var_dump($data) ?>
+            <?php if($data != NULL){?>
             <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
@@ -72,7 +71,6 @@
 
             </div>
         <?php } ?>
-
 
     </div>
 </div>
