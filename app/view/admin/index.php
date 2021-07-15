@@ -1,15 +1,49 @@
-<header class="masthead">
-    <div class="container position-relative px-4 px-lg-5">
-        <div class="row gx-4 gx-lg-5 justify-content-center">
-            <div class="col-md-10 col-lg-8 col-xl-7">
-                <div class="site-heading">
-                    <h1>Espace administrateur</h1>
-                    <span class="subheading">Ici l'ensemble de l'administration du site</span>
-                </div>
+<div class="container-fluid">
+    <!-- ============================================================== -->
+    <!-- Three charts -->
+    <!-- ============================================================== -->
+    <div class="row justify-content-center">
+        <div class="col-lg-4 col-md-12">
+            <div class="white-box analytics-info">
+                <h3 class="box-title">Total Visit</h3>
+                <ul class="list-inline two-part d-flex align-items-center mb-0">
+                    <li>
+                        <div id="sparklinedash"><canvas width="67" height="30"
+                                                        style="display: inline-block; width: 67px; height: 30px; vertical-align: top;"></canvas>
+                        </div>
+                    </li>
+                    <li class="ms-auto"><span class="counter text-success">659</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-12">
+            <div class="white-box analytics-info">
+                <h3 class="box-title">Total Page Views</h3>
+                <ul class="list-inline two-part d-flex align-items-center mb-0">
+                    <li>
+                        <div id="sparklinedash2"><canvas width="67" height="30"
+                                                         style="display: inline-block; width: 67px; height: 30px; vertical-align: top;"></canvas>
+                        </div>
+                    </li>
+                    <li class="ms-auto"><span class="counter text-purple">869</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-12">
+            <div class="white-box analytics-info">
+                <h3 class="box-title">Unique Visitor</h3>
+                <ul class="list-inline two-part d-flex align-items-center mb-0">
+                    <li>
+                        <div id="sparklinedash3"><canvas width="67" height="30"
+                                                         style="display: inline-block; width: 67px; height: 30px; vertical-align: top;"></canvas>
+                        </div>
+                    </li>
+                    <li class="ms-auto"><span class="counter text-info">911</span>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
-</header>
 <div class="container px-4 px-lg-5">
     <p>
         <a class="btn btn-success" href="?p=admin.posts.add">Ajouter un article</a>
