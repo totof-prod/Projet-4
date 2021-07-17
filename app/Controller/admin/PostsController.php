@@ -22,18 +22,19 @@ class PostsController extends AppController
         $this->render('admin.index', compact('posts', 'categories', 'visitor', 'comments'));
     }
     public function add(){
-
         if (!empty($_POST)) {
 
             $result = $this->post->create([
                     'title' => $_POST['title'],
                     'content' => $_POST['content'],
-                    'category_id' => $_POST['category_id']
+                    'episode' => $_POST['episode'],
+                    'category_id' => $_POST['category_id'],
+                    'creation_date' => date("Y-m-d H:i:s")
                 ]
             );
             if ($result) {
                 $this->setFlash('La page à bien été ajoutée', 'success');
-                return $this->index();
+                return $this->list();
             }
         }
         $categories = $this->category->extract('id', 'name');
@@ -47,6 +48,7 @@ class PostsController extends AppController
 
             $result = $this->post->update($_GET['id'],[
                     'title' => $_POST['title'],
+                    'episode' => $_POST['episode'],
                     'content' => $_POST['content'],
                     'category_id'=> $_POST['category_id']
                 ]
@@ -66,8 +68,12 @@ class PostsController extends AppController
         if (!empty($_POST)){
             $result = $this->post->delete($_POST['id']);
             $this->setFlash('La page à bien été supprimée', 'success');
-            return $this->index();
+            return $this->list();
         }
+    }
+    public function list(){
+        $posts= $this->post->all();
+        $this->render('admin.posts.list', compact('posts'));
     }
 
 

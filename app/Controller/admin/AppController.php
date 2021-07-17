@@ -16,4 +16,5 @@ class AppController extends \Blog\Controller\AppController {
             $this->forbidden();
         }
     }
+
 }

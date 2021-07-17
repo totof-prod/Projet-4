@@ -27,5 +27,14 @@ class CommentsTable extends Table
             ", [$id]);
 
     }
+    public function all()
+    {
+        return $this->query("
+            SELECT *, comments.id as id
+            FROM comments
+            LEFT JOIN Post ON Post_id = Post.id 
+            WHERE comments.Signalement = 'true'
+            ");
+    }
 
 }

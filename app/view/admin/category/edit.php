@@ -3,7 +3,7 @@
         <div class="row gx-4 gx-lg-5 justify-content-center">
             <div class="col-md-10 col-lg-8 col-xl-7">
                 <div class="site-heading">
-                    <h1>Ajouter/modifier la liste des épisodes</h1>
+                    <h1>Ajouter/modifier la liste des Livres</h1>
                 </div>
             </div>
         </div>
@@ -19,7 +19,7 @@
 
     <form method="post">
 
-        <?= $form->input('name','Titre de la categorie'); ?>
+        <?= $form->input('name','Titre du Livre'); ?>
 
         <button class="btn btn-primary">Sauvegarder</button>
 

@@ -24,6 +24,7 @@ public function count(){
 public function all(){
 
      return $this->query('SELECT * FROM ' . $this->table );
+
 }
 public function query($statement, $attributes = null, $one = false)
 {

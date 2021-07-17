@@ -17,10 +17,11 @@
         </div>
         <?php unset($_SESSION['flash']);} ?>
     <form method="post">
-
+        <?= $form->select('category_id', 'Le livre:', $categories); ?>
+        <?= $form->input('episode','Episode numéro:',['type' =>'number'], "placeholder = '1'" ); ?>
         <?= $form->input('title','Titre de l\'épisode:'); ?>
         <?= $form->input('content', 'Contenu:', ['type' =>'textarea'] ); ?>
-        <?= $form->select('category_id', 'L\'épisode:', $categories ); ?>
+
 
         <button class="btn btn-primary">Sauvegarder</button>
 

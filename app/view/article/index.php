@@ -14,7 +14,7 @@
     <?php if (isset($_SESSION['flash'])){
         ?>
         <div id="alert" class="alert alert-<?= $_SESSION['flash']['type']; ?>">
-            <a class="close">x</a>
+            <a class="close"><i class="fas fa-times-circle"></i></a>
             <?= $_SESSION['flash']['message']; ?>
         </div>
         <?php
@@ -63,17 +63,14 @@
                     <?php endforeach; ?>
                 </div>
             </div>
+            <?php }else{ ?>
+                <div class="comment">
+                    Aucun comentaire à afficher
+                </div>
+            <?php } ?>
         </div>
-        <?php }else{ ?>
-            <div class="comment">
-
-                Aucun comentaire à afficher
-
-            </div>
-        <?php } ?>
-
     </div>
+    <?php  endforeach; ?>
 </div>
-<?php  endforeach; ?>
-</div>
+
 

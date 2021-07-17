@@ -4,6 +4,7 @@
 namespace Blog\Controller\admin;
 use \App;
 use core\html\BootstrapForm;
+use core\tools;
 
 
 class CommentController extends AppController
@@ -17,22 +18,18 @@ class CommentController extends AppController
     }
     public function index(){
         $posts = $this->post->all();
-        $categories= $this->category->all();
-        $this->render('admin.index', compact('posts', 'categories'));
-    }
-    public function edit(){
-
-        $comments = $this->comments->findSignal($_GET['id']);
-        $this->render('admin.comment.edit', compact('comments'));
-
+        $categories = $this->category->all();
+        $comments = $this->comments->count();
+        $visitor = new tools\visitorCounter();
+        $this->render('admin.index', compact('posts', 'categories', 'visitor', 'comments'));
     }
     public function  delete(){
         if (!empty($_POST)){
             $result = $this->comments->delete($_POST['id']);
             if ($result){
                 $this->setFlash('Le commentaire à bien été supprimé', 'success');
-                $this->index();
-                }
+                $this->list();
+            }
         }
 
     }
@@ -43,9 +40,13 @@ class CommentController extends AppController
 
             if ($result) {
                 $this->setFlash('Le commentaire à bien été conservé', 'success');
-                return $this->index();
+                return $this->list();
             }
         }
+    }
+    public function list(){
+        $comments= $this->comments->all();
+        $this->render('admin.comment.list', compact('comments'));
     }
 
 

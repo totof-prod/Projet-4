@@ -31,4 +31,7 @@
 .ct-area, .ct-line {
   pointer-events: none; }
 
+.disconnect{
+ position: relative;
+}
 /*# sourceMappingURL=chartist-plugin-tooltip.css.map */
