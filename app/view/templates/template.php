@@ -10,11 +10,11 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
 </head>
 
 <body>
-<nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container px-4 px-lg-5">
         <a class="navbar-brand" href="index.php">Accueil</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,27 +24,41 @@
 
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class= "navbar-nav ms-auto py-4 py-lg-0">
-                <li class="nav-item active">
-                    <a class="nav-link px-lg-3 py-3 py-lg-4" href="index.php">Home</a>
+
+                <li class="nav-item active dropdown">
+                    <a class="nav-link px-lg-3 py-3 py-lg-4 dropdown-toggle"
+                       data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Les livres
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <?php foreach ($categories as $category): ?>
+                            <a class="dropdown-item" href="?p=posts.book&id=<?= $category->id ; ?>"><?= $category->name ; ?></a>
+                      <?php  endforeach; ?>
                 </li>
-                <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="about.html">L'auteur</a></li>
+
+
+
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link px-lg-3 py-3 py-lg-4 dropdown-toggle" href="about.html"
+                       data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Les episodes
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <?php foreach ($posts as $post): ?>
+                            <a class="dropdown-item" href="?p=posts.single&id=<?= $post->id ; ?>"><?=$post->episode . ' - ' . $post->title ; ?></a>
+                        <?php  endforeach; ?>
+                </li>
+
+                <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="contact.html">l'auteur</a></li>
                 <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="contact.html">Contact</a></li>
-                <?php
-                if(isset($_SESSION['auth'])){
-                    ?>
+                <?php if(isset($_SESSION['auth'])){ ?>
                     <li class="nav-item active">
                         <a class="nav-link px-lg-3 py-3 py-lg-4" href="index.php?p=admin.posts.index">admin</a>
                     </li>
-                    <?php
-                }else{
-                    ?>
+                    <?php }else{?>
                     <li class="nav-item active">
                         <a class="nav-link px-lg-3 py-3 py-lg-4" href="index.php?p=users.login">Se connecter</a>
                     </li>
-
-                    <?php
-                }
-                ?>
+                    <?php } ?>
             </ul>
         </div>
     </div>
@@ -85,13 +99,10 @@
         </div>
     </div>
 </footer>
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-<script
-        src="https://code.jquery.com/jquery-3.6.0.js"
-        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-        crossorigin="anonymous"></script>
+<script src="js/jquery.js"></script>
 <script src="js/scripts.js"></script>
-<script type="text/javascript" src="js/main.js"></script>
+<script src="js/lib/turn.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>

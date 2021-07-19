@@ -10815,4 +10815,13 @@ header.masthead .site-heading .h1 {
     max-width: 5%;
 	  height: auto;
   }
+  #flipbook{
+    width:1152px;
+    height:752px;
+  }
+  #flipbook .turn-page{
+    background-color:#ccc;
+    background-size:100% 100%;
+  }
+
 }

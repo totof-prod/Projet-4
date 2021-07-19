@@ -34,7 +34,7 @@ class PostTable extends Table
 
     }
 
-    public function lastByCategory($id){
+    public function articleByCategory($id){
         return $this->query("
             SELECT Post.id, Post.title, Post.content, Post.creation_date, Category.name as categorie
             FROM Post

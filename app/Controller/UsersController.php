@@ -7,6 +7,13 @@ use App;
 use core\auth\DbAuth;
 
 class UsersController extends AppController {
+    public function __construct()
+    {
+        parent::__construct();
+        $this->loadModel('post');
+        $this->loadModel('category');
+        $this->loadModel('comments');
+    }
 
     public function login(){
         $error = false;
@@ -19,8 +26,10 @@ class UsersController extends AppController {
                 $error = true;
             }
         }
+        $posts = $this->post->all();
+        $categories = $this->category->all();
         $form = new \core\html\BootstrapForm($_POST);
-        $this->render('users.login', compact('form', 'error'));
+        $this->render('users.login', compact('form', 'error', 'posts', 'categories'));
 
     }
     public function disconnect(){
