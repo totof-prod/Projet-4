@@ -3,6 +3,7 @@
 namespace Blog\Controller\admin;
 use \App;
 use core\html\BootstrapForm;
+use core\tools;
 
 class CategoryController extends AppController
 {
@@ -11,12 +12,14 @@ class CategoryController extends AppController
         parent::__construct();
         $this->loadModel('post');
         $this->loadModel('category');
+        $this->loadModel('comments');
     }
     public function index(){
         $posts = $this->post->all();
-        $categories= $this->category->all();
-
-        $this->render('admin.index', compact('posts', 'categories'));
+        $categories = $this->category->all();
+        $comments = $this->comments->count();
+        $visitor = new tools\visitorCounter();
+        $this->render('admin.index', compact('posts', 'categories', 'visitor', 'comments'));
     }
     public function add(){
 
@@ -27,7 +30,8 @@ class CategoryController extends AppController
                 ]
             );
             if ($result) {
-                return $this->index();
+                $this->setFlash('Le livre à bien été ajoutée', 'success');
+                return $this->list();
             }
         }
         $categories = $this->category->extract('id', 'name');
@@ -44,7 +48,8 @@ if (!empty($_POST)) {
         ]
     );
     if ($result) {
-        return $this->index();
+        $this->setFlash('Le livre à bien été Modifiée', 'success');
+        return $this->list();
     }
 }
     $category = $this->category->find($_GET['id']);
@@ -58,9 +63,15 @@ if (!empty($_POST)) {
         if (!empty($_POST)){
 
             $result = $this->category->delete($_POST['id']);
-            return $this->index();
+            $this->setFlash('Le livre à bien été supprimée', 'success');
+            return $this->list();
 
         }
+    }
+    public function list(){
+
+        $categories= $this->category->all();
+        $this->render('admin.category.list', compact('categories'));
     }
 
 

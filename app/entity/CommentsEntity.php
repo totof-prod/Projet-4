@@ -10,5 +10,4 @@ class CommentsEntity extends Entity
 {
 
 
-
 }

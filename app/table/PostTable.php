@@ -26,7 +26,7 @@ class PostTable extends Table
      */
     public function findWithCategory($id){
         return $this->query("
-            SELECT Post.id, Post.title, Post.content, Post.creation_date, Category.name as categorie
+            SELECT Post.id, Post.title,Post.episode , Post.content, Post.creation_date, Category.name as categorie
             FROM Post
             LEFT JOIN Category ON category_id = category.id
             WHERE Post.id = ?
@@ -34,15 +34,19 @@ class PostTable extends Table
 
     }
 
-    public function lastByCategory($id){
+    public function articleByCategory($id){
         return $this->query("
             SELECT Post.id, Post.title, Post.content, Post.creation_date, Category.name as categorie
             FROM Post
             LEFT JOIN Category ON category_id = category.id
             WHERE Post.category_id = ?
             ORDER BY Post.creation_date DESC", [$id]);
-
-
+    }
+    public function all (){
+        return $this->query("
+            SELECT Post.id, Post.title, Post.episode, Post.content, Post.creation_date, Category.name as categorie
+            FROM Post
+            LEFT JOIN Category ON category_id = category.id");
     }
 
 }

@@ -13,7 +13,11 @@ class Controller{
         extract($data);
         require($this->viewPath . str_replace('.', '/', $view) . ".php");
         $content = ob_get_clean();
-        require($this->viewPath . 'templates/' . $this->template . '.php');
+        if(strpos($view, 'admin') !== false){
+            require($this->viewPath . 'templates/' .'admin' . ucfirst($this->template) . '.php');
+        }else{
+            require($this->viewPath . 'templates/' . $this->template . '.php');
+        }
     }
     protected function forbidden(){
         header('HTTP/1.0 403 Forbidden');
@@ -21,8 +25,13 @@ class Controller{
     }
     protected function notFound(){
         header('HTTP/1.0 404 Not Found');
-        die("Oupps je n'e trouve pas ='(" );
+        die("Oupps je ne trouve pas ='(" );
     }
-
+    protected function setFlash($message, $type= 'error'){
+        $_SESSION['flash'] = array(
+            'message'=> $message,
+            'type'=>$type
+        );
+    }
 
 }
